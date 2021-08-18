@@ -5,7 +5,7 @@
       <div class="page-header">
         <nav class="breadcrumb-one" aria-label="breadcrumb">
           <div class="title">
-            <h3>Chat</h3>
+            <h3>Chat Application</h3>
           </div>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
