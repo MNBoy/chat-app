@@ -301,7 +301,6 @@
                           placeholder="Message"
                           style="height: 100%"
                           @keyup.enter="sendMessage"
-                          @change="typing"
                         />
                       </form>
                     </div>
@@ -385,16 +384,6 @@ export default {
         this.users = this.actualUsers;
       }
     },
-    typing() {
-      const socket = webSocket("https://chat-app-mnboy.herokuapp.com", {
-        transports: ["websocket"],
-      });
-      socket.on("connect", () => {
-        socket.emit("typing", {
-          userId: this.userId,
-        });
-      });
-    },
     sendMessage(message) {
       if (message.target.value.trim().length > 0) {
         const element = document.getElementsByClassName("active-chat")[0];
@@ -477,26 +466,6 @@ export default {
         message.reciver_id === this.userId
       ) {
         this.reciveMessage(message.message);
-      }
-    });
-
-    socket.on("enableTyping", (data) => {
-      if (data.userId === this.userIdSelected) {
-        <div class="conversation-start">
-          <span>Is Typing...</span>
-        </div>;
-        const element = document.getElementsByClassName("active-chat")[0];
-        const typingElement = document.createElement("div");
-        typingElement.classList.add("conversation-start");
-        const spanElement = document.createElement("span");
-        spanElement.innerHTML = "Is Typing...";
-        typingElement.appendChild(spanElement);
-        element.appendChild(typingElement);
-        this.updateScroll();
-        setTimeout(() => {
-          element.removeChild(typingElement);
-          this.updateScroll();
-        }, 3000);
       }
     });
   },
