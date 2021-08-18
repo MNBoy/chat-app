@@ -1,12 +1,19 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
+import authModule from "./modules/auth/index";
+
+import actions from "./actions";
+import mutations from "./mutations";
+import getters from "./getters";
 
 export default createStore({
   state: {
+    api: "https://chat-app-mnboy.herokuapp.com/",
+    users: [],
   },
-  mutations: {
-  },
-  actions: {
-  },
+  getters,
+  actions,
+  mutations,
   modules: {
-  }
-})
+    auth: authModule,
+  },
+});

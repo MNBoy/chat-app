@@ -1,30 +1,46 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <router-view v-slot="{ Component }">
+    <transition name="router" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
+<script>
+export default {
+  created() {
+    this.$store.dispatch("tryLogin");
+  },
+};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&amp;display=swap");
+@import url("./assets/assets/css/plugins.css");
+@import url("./assets/bootstrap/css/bootstrap.min.css");
+@import url("./assets/assets/css/loader.css");
+
+* {
+  font-family: Quicksand;
 }
 
-#nav {
-  padding: 30px;
+/* Router Transition  */
+
+.router-enter-from,
+.router-leave-to {
+  opacity: 0;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.router-enter-active {
+  transition: all 0.2s ease-out;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.router-leave-active {
+  transition: all 0.2s ease-in;
+}
+
+.router-enter-to,
+.router-leave-from {
+  opacity: 1;
 }
 </style>
