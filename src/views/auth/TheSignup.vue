@@ -93,7 +93,7 @@
                 <div class="d-sm-flex justify-content-between">
                   <div class="field-wrapper">
                     <button type="submit" class="btn btn-primary" value="">
-                      Log In
+                      Sign Up
                     </button>
                   </div>
                 </div>
